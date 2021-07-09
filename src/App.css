@@ -2,4 +2,10 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: row;
+}
+
+.Services {
+  width: 20vw;
+  display: flex;
 }
