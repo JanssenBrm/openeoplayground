@@ -1,11 +1,13 @@
 .MainContainer {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: row;
 }
 
 .Services {
-  width: 20vw;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 30vw;
   display: flex;
+  z-index: 9999;
 }

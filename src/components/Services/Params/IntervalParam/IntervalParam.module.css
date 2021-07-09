@@ -1,0 +1,12 @@
+.IntervalContainer {
+    display: flex;
+}
+
+.DateSelector {
+    margin-right: .25rem;
+    flex: 1;
+}
+
+.DateSelector:last-child {
+    margin-right: 0;
+}

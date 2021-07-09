@@ -1,1 +1,38 @@
 .Services {}
+
+.ServiceContainer {
+    background-color: white;
+    padding: 1rem;
+    font-size: smaller;
+}
+
+.ServiceSelect {
+    border-bottom: 1px solid #eeeff0;
+    padding-bottom: 1rem;
+}
+
+.ServiceInfo {
+    margin-top: 1rem;
+}
+
+.ServiceTitle {
+    font-size: larger;
+    font-weight: bold;
+}
+.Title {
+    font-weight: bold;
+}
+
+.Description {
+    font-size: x-small;
+    margin-bottom: .5rem;
+}
+
+.Param {
+    padding: .5rem;
+    border-bottom: 1px solid #eeeff0;
+}
+
+.Param:last-child {
+    border-bottom: none;
+}

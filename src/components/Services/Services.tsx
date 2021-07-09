@@ -2,7 +2,9 @@ import React, {ChangeEvent} from 'react';
 import styles from './Services.module.css';
 import {getServices} from "../../services/OpenEO";
 import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess";
-
+import { Form } from 'react-bootstrap';
+import DateTimeParam from './Params/DateTime/DataTimeParam';
+import IntervalParam from './Params/IntervalParam/IntervalParam';
 
 interface ServiceState {
     loading: boolean;
@@ -42,8 +44,9 @@ class Services extends React.Component<any, ServiceState> {
     }
 
     renderServiceInfo = (s: OpenEOProcess) => (
-        <div>
-            <div>{s.id}</div>
+        <div className={styles.ServiceInfo}>
+            <div className={styles.ServiceTitle}>{s.id}</div>
+            <div className={styles.Description}>{s.description}</div>
             {
                 s.parameters.map((p: OpenEOProcessParam) => this.renderParam(p))
             }
@@ -51,21 +54,28 @@ class Services extends React.Component<any, ServiceState> {
     )
 
     renderParam = (p: OpenEOProcessParam) => (
-        <div>
-            <div>{p.name}</div>
+        <div className={styles.Param}>
+            <div className={styles.Title}>{p.name}</div>
             <div>{p.description}</div>
+            {
+                p.schema.type === 'temporal-intervals' ? (
+                    <IntervalParam></IntervalParam>
+                ) : ''
+            }
         </div>
     )
 
     render() {
         return (
-            <div>
-                <select onChange={this.updateSelected}>
-                    <option disabled selected>Select</option>
-                    {
-                        this.state.services.map((s: OpenEOProcess) => this.renderServiceSelect(s))
-                    }
-                </select>
+            <div className={styles.ServiceContainer}>
+                <div className={styles.ServiceSelect}>
+                    <Form.Label>Select your service</Form.Label>
+                    <Form.Control as="select" onChange={this.updateSelected}>
+                        {
+                            this.state.services.map((s: OpenEOProcess) => this.renderServiceSelect(s))
+                        }
+                    </Form.Control>
+                </div>
                 {this.state.selected ? this.renderServiceInfo(this.state.selected) : ''}
             </div>
 
