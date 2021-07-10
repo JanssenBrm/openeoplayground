@@ -36,3 +36,7 @@
 .Param:last-child {
     border-bottom: none;
 }
+
+.ParamInput {
+    margin-top: .5rem;
+}

@@ -5,6 +5,7 @@ import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess"
 import { Form } from 'react-bootstrap';
 import DateTimeParam from './Params/DateTime/DataTimeParam';
 import IntervalParam from './Params/IntervalParam/IntervalParam';
+import GeometryParam from './Params/GeometryParam/GeometryParam';
 
 interface ServiceState {
     loading: boolean;
@@ -57,11 +58,18 @@ class Services extends React.Component<any, ServiceState> {
         <div className={styles.Param}>
             <div className={styles.Title}>{p.name}</div>
             <div>{p.description}</div>
-            {
-                p.schema.type === 'temporal-intervals' ? (
-                    <IntervalParam></IntervalParam>
-                ) : ''
-            }
+            <div className={styles.ParamInput}>
+                {
+                    p.schema.type === 'temporal-intervals' ? (
+                        <IntervalParam></IntervalParam>
+                    ) : ''
+                }
+                {
+                    p.schema.type === 'object' ? (
+                        <GeometryParam type="polygon"></GeometryParam>
+                    ) : ''
+                }
+            </div>
         </div>
     )
 
