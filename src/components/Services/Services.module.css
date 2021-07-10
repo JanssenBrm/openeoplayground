@@ -40,3 +40,13 @@
 .ParamInput {
     margin-top: .5rem;
 }
+
+.Execute {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: stretch;
+}
+
+.ExecuteButton {
+    flex: 1;
+}

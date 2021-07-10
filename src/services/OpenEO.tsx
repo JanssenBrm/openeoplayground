@@ -29,3 +29,8 @@ export const getServices = (): Promise<OpenEOProcess[]> => {
         .then((data: any) => data.processes);
     };
 
+
+export const executeService = (service: OpenEOProcess): Promise<any> => {
+    return getToken(OPENEO_USERNAME, OPENEO_PASSWORD)
+        .then((token: string) => 'OK')
+}

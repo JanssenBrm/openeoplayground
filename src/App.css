@@ -11,3 +11,11 @@
   display: flex;
   z-index: 9999;
 }
+
+.Toasts {
+  position: absolute;
+  width: 10rem;
+  left: calc(50% - 10rem);
+  bottom: .5rem;
+  z-index: 9999;
+}

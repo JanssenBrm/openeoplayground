@@ -13,4 +13,5 @@ export interface OpenEOProcessParam {
       type: string;
       'sub-type': string;
   }
+  value: any;
 }
