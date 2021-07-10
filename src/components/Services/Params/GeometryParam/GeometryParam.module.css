@@ -1,3 +1,19 @@
 .Type {
     margin-left: .5rem;
 }
+
+.GeomParam {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Geom {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.Icon {
+    margin-right: .5rem;
+}

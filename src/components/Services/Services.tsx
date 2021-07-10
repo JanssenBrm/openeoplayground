@@ -35,7 +35,7 @@ const renderParam = (p: OpenEOProcessParam) => (
             }
             {
                 p.schema.type === 'object' ? (
-                    <GeometryParam type="polygon"></GeometryParam>
+                    <GeometryParam type="polygon" setValue={(feature: any) => console.log("GEOM PARAM", feature)}></GeometryParam>
                 ) : ''
             }
         </div>
@@ -45,8 +45,6 @@ const renderParam = (p: OpenEOProcessParam) => (
 const Services = (props: any) => {
     const [services, setServices]: [OpenEOProcess[], any] = useState([]);
     const [selected, setSelected]: [OpenEOProcess | undefined, any] = useState(undefined);
-
-   //useSelector((state: AppStore) => state.ui.interaction)
 
     useEffect(() => {
         getServices()

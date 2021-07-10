@@ -7,7 +7,7 @@ export const uiSlice = createSlice({
     reducers: {
         setInteractionType: (state: UiState, action: {payload: UiInteractionType}) => {
             state.interaction = action.payload
-        },
+        }
     },
 })
 

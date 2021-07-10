@@ -1,5 +1,5 @@
 export interface UiState {
-    interaction: UiInteractionType
+    interaction: UiInteractionType,
 }
 
 export enum UiInteractionType {
