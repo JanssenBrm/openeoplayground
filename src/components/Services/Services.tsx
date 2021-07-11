@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import styles from './Services.module.css';
 import {executeService, getServices} from "../../services/OpenEO";
 import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess";
-import {Button, Form } from 'react-bootstrap';
+import {Button, Form, Spinner} from 'react-bootstrap';
 import IntervalParam from './Params/IntervalParam/IntervalParam';
 import GeometryParam from './Params/GeometryParam/GeometryParam';
-import { useDispatch } from 'react-redux';
-import { addToast } from '../../stores/ui';
+import {useDispatch} from 'react-redux';
+import {addToast} from '../../stores/ui';
 
 
 const renderServiceSelect = (s: OpenEOProcess) => (
@@ -15,7 +15,7 @@ const renderServiceSelect = (s: OpenEOProcess) => (
 
 const updateSelected = (event: any, services: OpenEOProcess[], setSelected: any) => setSelected(services.find((s: OpenEOProcess) => s.id === event.target.value));
 
-const renderServiceInfo = (s: OpenEOProcess, dispatch: Function) => (
+const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Function, dispatch: Function) => (
     <div className={styles.ServiceInfo}>
         <div className={styles.ServiceTitle}>{s.id}</div>
         <div className={styles.Description}>{s.description}</div>
@@ -24,26 +24,36 @@ const renderServiceInfo = (s: OpenEOProcess, dispatch: Function) => (
         }
 
         <div className={styles.Execute}>
-            <Button className={styles.ExecuteButton} disabled={!paramsValid(s.parameters)} onClick={() => _executeService(s, dispatch)}>Execute</Button>
+            <Button className={styles.ExecuteButton} disabled={!paramsValid(s.parameters) || loading}
+                    onClick={() => _executeService(s, setLoading, dispatch)}>
+                {
+                    loading ? (
+                            <Spinner animation="border"/>
+                        ) :
+                        'Execute'
+                }
+            </Button>
+
         </div>
     </div>
 )
-const _executeService = (p: OpenEOProcess, dispatch: Function): void => {
+const _executeService = (p: OpenEOProcess, setLoading: Function, dispatch: Function): void => {
+    setLoading(true);
     executeService(p)
         .then((result: string) => {
-           dispatch(addToast({
-               id: 'service_execute',
-               text: `Succesfully executed service: ${result}`,
-               type: 'success'
-           }));
-
-
+            dispatch(addToast({
+                id: 'service_execute',
+                text: `Succesfully executed service: ${result}`,
+                type: 'success'
+            }));
         }).catch((error: string) => {
         dispatch(addToast({
             id: 'service_execute_error',
             text: 'Something went wrong when executing service',
             type: 'danger',
-        }));
+        }))
+    }).finally(() => {
+        setLoading(false);
     })
 }
 
@@ -54,7 +64,7 @@ const renderParam = (p: OpenEOProcessParam) => (
         <div className={styles.ParamInput}>
             {
                 p.schema.type === 'temporal-intervals' ? (
-                    <IntervalParam  setValue={(interval: any) => p.value = interval}></IntervalParam>
+                    <IntervalParam setValue={(interval: any) => p.value = interval}></IntervalParam>
                 ) : ''
             }
             {
@@ -72,14 +82,15 @@ const paramsValid = (params: OpenEOProcessParam[]): boolean => true; //params.fi
 const Services = (props: any) => {
     const [services, setServices]: [OpenEOProcess[], any] = useState([]);
     const [selected, setSelected]: [OpenEOProcess | undefined, any] = useState(undefined);
+    const [execLoading, setExecLoading] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
         getServices()
             .then((services: OpenEOProcess[]) => {
-              setServices(services);
+                setServices(services);
             });
-    },[]);
+    }, []);
 
     return (
         <div className={styles.ServiceContainer}>
@@ -91,7 +102,7 @@ const Services = (props: any) => {
                     }
                 </Form.Control>
             </div>
-            { selected? renderServiceInfo(selected, dispatch) : ''}
+            {selected ? renderServiceInfo(selected, execLoading, setExecLoading, dispatch) : ''}
         </div>
     )
 }

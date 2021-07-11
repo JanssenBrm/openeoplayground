@@ -94,16 +94,26 @@ export const getServices = (): Promise<OpenEOProcess[]> => {
 };
 
 
-export const executeService = (service: OpenEOProcess): Promise<string> => {
-    return getToken(OPENEO_USERNAME, OPENEO_PASSWORD)
-        .then((token: string) => fetch(`${OPENEO_BASE}jobs`, {
+export const executeService = async (service: OpenEOProcess): Promise<string> => {
+    const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
+
+    const location = await fetch(`${OPENEO_BASE}jobs`, {
             headers: {
                 ...createAuthHeader(token),
                 'Content-Type': 'application/json'
             },
             method: 'POST',
             body: JSON.stringify(buildGraph(service))
-        }))
-        .then((response: Response) => response.headers.get('Location') || '');
+        }).then((response: Response) => response.headers.get('Location') || '');
+
+    if (location !== '') {
+        await fetch(`${location}/results`, {
+            headers: {
+                ...createAuthHeader(token),
+            },
+            method: 'POST'
+        });
+    }
+    return location;
 }
 
