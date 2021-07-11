@@ -22,11 +22,18 @@
 
 .Routes {
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .Route {
     padding: .75rem;
+    width: 100%;
+    color: var(--sidebar-text-color);
 }
 .Route:hover {
     background-color: var(--inactive-color);
+    color: var(--sidebar-text-color);
+    font-weight: bold;
+    text-decoration: none;
 }

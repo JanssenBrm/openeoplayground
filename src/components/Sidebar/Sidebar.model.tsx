@@ -4,4 +4,5 @@ export interface SidebarProps {
 
 export interface SidebarRoute {
     label: string;
+    route: string;
 }

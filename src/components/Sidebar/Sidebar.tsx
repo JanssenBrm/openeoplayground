@@ -1,5 +1,6 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { SidebarProps, SidebarRoute } from "./Sidebar.model";
 import styles from './Sidebar.module.css';
 
@@ -13,7 +14,7 @@ const Sidebar = (props: SidebarProps) => {
             <div className={styles.Routes}>
                 {
                     props.routes.map((r: SidebarRoute) => (
-                        <div className={styles.Route}>{r.label}</div>
+                        <Link className={styles.Route} to={r.route}> {r.label}</Link>
                     ))
                 }
             </div>
