@@ -30,10 +30,10 @@ const renderServiceInfo = (s: OpenEOProcess, dispatch: Function) => (
 )
 const _executeService = (p: OpenEOProcess, dispatch: Function): void => {
     executeService(p)
-        .then((result: any) => {
+        .then((result: string) => {
            dispatch(addToast({
                id: 'service_execute',
-               text: 'Succesfully executed service',
+               text: `Succesfully executed service: ${result}`,
                type: 'success'
            }));
 

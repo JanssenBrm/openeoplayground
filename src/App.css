@@ -14,7 +14,7 @@
 
 .Toasts {
   position: absolute;
-  width: 10rem;
+  width: 25rem;
   left: calc(50% - 10rem);
   bottom: .5rem;
   z-index: 9999;
