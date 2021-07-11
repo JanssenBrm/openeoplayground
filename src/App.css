@@ -1,6 +1,15 @@
 .MainContainer {
   width: 100vw;
   height: 100vh;
+  display: flex;
+}
+
+.SideBar {
+  width: auto
+}
+.Content {
+  flex: 1;
+  position: relative;
 }
 
 .Services {

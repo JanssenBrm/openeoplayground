@@ -9,3 +9,13 @@ body {
 body, select, input, option {
   font-family: 'Nunito Sans';
 }
+
+
+:root {
+  --sidebar-color: #363e4a;
+  --sidebar-text-color: #eeeef0;
+  --sidebar-header-color: #41495a;
+  --content-color: #f2f7f8;
+
+  --inactive-color: #858e96;
+}
