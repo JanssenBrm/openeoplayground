@@ -21,6 +21,7 @@ const createAuthHeader = (token: string): any => ({
 
 const buildGraph = (service: OpenEOProcess): any => ({
     'process': {
+        'id': 'Test',
         'process_graph': {
             'loadcollection1': {
                 'process_id': 'load_collection',
@@ -117,3 +118,29 @@ export const executeService = async (service: OpenEOProcess): Promise<string> =>
     return location;
 }
 
+export const getJobs = async () : Promise<any> => {
+    const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
+
+    const jobs = await fetch(`${OPENEO_BASE}jobs`, {
+        headers: {
+            ...createAuthHeader(token),
+        },
+    })
+        .then((response: Response) => response.json())
+        .then((data: any) => data.jobs)
+        .then((jobs: any[]) => Promise.all(
+            jobs.map((j: any) =>
+                fetch(`${OPENEO_BASE}jobs/${j.id}`, {
+                    headers: {
+                        ...createAuthHeader(token),
+                    },
+                })
+                    .then((response: Response) => response.json())
+                    .then((info: any) => ({
+                        ...j,
+                        ...info
+                    }))
+            )
+        ))
+    return jobs;
+}

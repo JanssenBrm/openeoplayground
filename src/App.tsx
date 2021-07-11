@@ -9,6 +9,7 @@ import {Toast} from './components/Toasts/toast.model';
 import Toasts from './components/Toasts/Toasts';
 import {AppStore} from './stores/app.model';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import Jobs from './components/Jobs/Jobs';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
                             <div className="Toasts">
                                 <Toasts toasts={toasts}></Toasts>
                             </div>
+                        </Route>
+                        <Route path="/jobs">
+                           <Jobs/>
                         </Route>
                     </Switch>
                 </div>

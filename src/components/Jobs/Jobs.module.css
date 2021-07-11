@@ -1,0 +1,57 @@
+.JobsContainer {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: var(--content-color);
+}
+
+.JobList {
+    display: flex;
+    flex-direction: column;
+}
+
+.Job {
+    display: flex;
+    background-color: var(--component-color);
+    padding: .75rem;
+    margin: .25rem 0;
+    border-radius: 5px;
+    font-size: smaller;
+    align-items: center;
+}
+
+.JobDate, .JobDuration {
+    font-size: x-small;
+    color: var(--inactive-color);
+}
+
+.JobDate, .JobDuration, .JobTitle {
+    margin-right: .5rem;
+}
+
+.JobsHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.JobTitle {
+    font-weight: bold;
+    flex: 1;
+}
+
+.Finished {
+    color: #3bc349;
+}
+
+.Created {
+    color: #7560ee;
+}
+
+.Running, .Queued {
+    color: #009ffb;
+}
+
+.Failed {
+    color: #f62e51;
+}

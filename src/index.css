@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+@import url('https://fonts.googleapis.com/css?family=Rubik');
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
@@ -7,7 +7,7 @@ body {
 }
 
 body, select, input, option {
-  font-family: 'Nunito Sans';
+  font-family: 'Rubik';
 }
 
 
@@ -16,6 +16,7 @@ body, select, input, option {
   --sidebar-text-color: #eeeef0;
   --sidebar-header-color: #41495a;
   --content-color: #f2f7f8;
+  --component-color: white;
 
   --inactive-color: #858e96;
 }
