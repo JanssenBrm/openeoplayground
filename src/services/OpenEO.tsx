@@ -1,4 +1,4 @@
-import {OpenEOProcess} from "../interfaces/OpenEOProcess";
+import {OpenEOProcess, OpenEOProcessParam} from "../interfaces/OpenEOProcess";
 
 
 const OPENEO_BASE = 'https://openeo.vito.be/openeo/1.0/'
@@ -20,64 +20,24 @@ const createAuthHeader = (token: string): any => ({
 })
 
 const buildGraph = (service: OpenEOProcess): any => ({
-    'title': 'test',
-    'description': 'test job',
+    'title': `OpenEO Job Execution - ${service.id}`,
+    'description': `${service.description}`,
     'process': {
         'process_graph': {
-            'loadcollection1': {
-                'process_id': 'load_collection',
-                'arguments': {
-                    'bands': ['B04', 'B08'],
-                    'id': 'TERRASCOPE_S2_TOC_V2',
-                    'spatial_extent': {
-                        'west': 575080.3763898548,
-                        'east': 576080.3763898548,
-                        'south': 6663988.690364948,
-                        'north': 6664988.690364948,
-                        'crs': 'EPSG:3857'
-                    },
-                    'temporal_extent': null
-                }
-            },
-            'filtertemporal1': {
-                'process_id': 'filter_temporal',
-                'arguments': {'data': {'from_node': 'loadcollection1'}, 'extent': ['2021-03-31', '2021-03-31']}
-            },
-            'reducedimension1': {
-                'process_id': 'reduce_dimension',
-                'arguments': {
-                    'data': {'from_node': 'filtertemporal1'},
-                    'dimension': 'bands',
-                    'reducer': {
-                        'process_graph': {
-                            'arrayelement1': {
-                                'process_id': 'array_element',
-                                'arguments': {'data': {'from_parameter': 'data'}, 'index': 1}
-                            },
-                            'arrayelement2': {
-                                'process_id': 'array_element',
-                                'arguments': {'data': {'from_parameter': 'data'}, 'index': 0}
-                            },
-                            'subtract1': {
-                                'process_id': 'subtract',
-                                'arguments': {'x': {'from_node': 'arrayelement1'}, 'y': {'from_node': 'arrayelement2'}}
-                            },
-                            'add1': {
-                                'process_id': 'add',
-                                'arguments': {'x': {'from_node': 'arrayelement1'}, 'y': {'from_node': 'arrayelement2'}}
-                            },
-                            'divide1': {
-                                'process_id': 'divide',
-                                'arguments': {'x': {'from_node': 'subtract1'}, 'y': {'from_node': 'add1'}},
-                                'result': true
-                            }
-                        }
+            "serviceexecute1": {
+                "process_id": service.id,
+                "arguments": service.parameters.reduce((result: any, p: OpenEOProcessParam) => {
+                    if (p.schema.type === 'temporal-intervals') {
+                        result[p.name] = { extent: p.value };
+                    } else {
+                        result[p.name] =  p.value;
                     }
-                }
+                    return result;
+                }, {})
             },
             'saveresult1': {
                 'process_id': 'save_result',
-                'arguments': {'data': {'from_node': 'reducedimension1'}, 'format': 'gtiff', 'options': {}},
+                'arguments': {'data': {'from_node': 'serviceexecute1'}, 'format': 'gtiff', 'options': {}},
                 'result': true
             }
         }
@@ -98,7 +58,6 @@ export const getServices = (): Promise<OpenEOProcess[]> => {
 
 export const executeService = async (service: OpenEOProcess): Promise<string> => {
     const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
-
     const location = await fetch(`${OPENEO_BASE}jobs`, {
             headers: {
                 ...createAuthHeader(token),
