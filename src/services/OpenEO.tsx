@@ -20,8 +20,9 @@ const createAuthHeader = (token: string): any => ({
 })
 
 const buildGraph = (service: OpenEOProcess): any => ({
+    'title': 'test',
+    'description': 'test job',
     'process': {
-        'id': 'Test',
         'process_graph': {
             'loadcollection1': {
                 'process_id': 'load_collection',
@@ -140,7 +141,43 @@ export const getJobs = async () : Promise<any> => {
                         ...j,
                         ...info
                     }))
+
             )
         ))
+        .then((jobs: any[]) => jobs.sort((j1, j2) => new Date(j1.created) < new Date(j2.created) ? 1 : -1));
     return jobs;
+}
+
+export const downloadJobResult = async (id: string) : Promise<any> => {
+    const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
+
+    const results = await fetch(`${OPENEO_BASE}jobs/${id}/results`, {
+        mode: 'cors',
+        headers: {
+            ...createAuthHeader(token),
+        },
+    })
+        .then((response: Response) => response.text())
+        .then((data: string) => JSON.parse(data.replace('NaN', `"NaN"`)).assets)
+        .then((assets: any) => Object.keys(assets).map((a: string) => ({
+            filename: a,
+            url: assets[a].href
+        })));
+
+    await Promise.all(
+        results.map((r: any) => fetch(r.url, {
+            headers: {
+                ...createAuthHeader(token),
+            },
+        })
+            .then((res: Response) => {
+                return res.blob();
+            }).then((blob: Blob) => {
+                const href = window.URL.createObjectURL(blob);
+                window.open(href, '_blank');
+            })
+        )
+    )
+
+    return results;
 }

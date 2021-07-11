@@ -17,16 +17,16 @@
     margin: .25rem 0;
     border-radius: 5px;
     font-size: smaller;
-    align-items: center;
+    align-items: baseline;
 }
 
-.JobDate, .JobDuration {
+.JobDate, .JobDuration, .JobDescription {
     font-size: x-small;
     color: var(--inactive-color);
 }
 
-.JobDate, .JobDuration, .JobTitle {
-    margin-right: .5rem;
+.JobDate, .JobDuration, .JobTitle, .JobActions, .JobDescription{
+    margin-right: 1rem;
 }
 
 .JobsHeader {
@@ -35,9 +35,12 @@
     margin-bottom: 1rem;
 }
 
+.JobDescription {
+    flex: 1;
+}
+
 .JobTitle {
     font-weight: bold;
-    flex: 1;
 }
 
 .Finished {

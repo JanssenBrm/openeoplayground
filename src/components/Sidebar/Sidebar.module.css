@@ -8,6 +8,7 @@
 .Header {
     padding: .5rem;
     text-align: center;
+    background-color: var(--sidebar-header-color);
 }
 
 .Title {
