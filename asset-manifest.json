@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.93dd50a7.chunk.css",
+    "main.js": "/static/js/main.fd3b4646.chunk.js",
+    "main.js.map": "/static/js/main.fd3b4646.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.77d5c1cb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.77d5c1cb.js.map",
+    "static/css/2.bf0f195d.chunk.css": "/static/css/2.bf0f195d.chunk.css",
+    "static/js/2.a4da9e44.chunk.js": "/static/js/2.a4da9e44.chunk.js",
+    "static/js/2.a4da9e44.chunk.js.map": "/static/js/2.a4da9e44.chunk.js.map",
+    "static/js/3.ac65a78e.chunk.js": "/static/js/3.ac65a78e.chunk.js",
+    "static/js/3.ac65a78e.chunk.js.map": "/static/js/3.ac65a78e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.bf0f195d.chunk.css.map": "/static/css/2.bf0f195d.chunk.css.map",
+    "static/css/main.93dd50a7.chunk.css.map": "/static/css/main.93dd50a7.chunk.css.map",
+    "static/js/2.a4da9e44.chunk.js.LICENSE.txt": "/static/js/2.a4da9e44.chunk.js.LICENSE.txt",
+    "static/media/leaflet.draw.css": "/static/media/spritesheet.a4e0eb7a.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77d5c1cb.js",
+    "static/css/2.bf0f195d.chunk.css",
+    "static/js/2.a4da9e44.chunk.js",
+    "static/css/main.93dd50a7.chunk.css",
+    "static/js/main.fd3b4646.chunk.js"
+  ]
+}
