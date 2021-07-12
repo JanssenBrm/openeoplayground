@@ -1,9 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { SidebarProps, SidebarRoute } from "./Sidebar.model";
 import styles from './Sidebar.module.css';
 
 const Sidebar = (props: SidebarProps) => {
+    let location = useLocation();
     return (
         <div className={styles.SidebarContainer}>
             <div className={styles.Header}>
@@ -13,7 +14,7 @@ const Sidebar = (props: SidebarProps) => {
             <div className={styles.Routes}>
                 {
                     props.routes.map((r: SidebarRoute) => (
-                        <Link className={styles.Route} to={r.route}> {r.label}</Link>
+                        <Link className={[styles.Route, location.pathname === r.route ? styles.ActiveRoute : ''].join(' ')} to={r.route}>{r.icon} <span className={styles.RouteLabel}>{r.label}</span></Link>
                     ))
                 }
             </div>

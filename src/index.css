@@ -21,9 +21,11 @@ body, select, input, option {
 
   --primary-color: rgb(0, 38, 56);
   --primary-contrast-color: #ffffff;
+  --primary-hover: rgba(255, 255, 255, 0.13);
 
   --secondary-color: #FF2D28;
   --secondary-disabled-color: #FF5551;
+
 
 }
 

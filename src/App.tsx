@@ -10,6 +10,7 @@ import {AppStore} from './stores/app.model';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import Jobs from './components/Jobs/Jobs';
 import Processes from './components/Processes/Processes';
+import {FaClipboardList, FaPlay } from 'react-icons/fa';
 
 
 function App() {
@@ -17,11 +18,17 @@ function App() {
     const routes: SidebarRoute[] = [
         {
             label: 'Processes',
-            route: '/processes'
+            route: '/processes',
+            icon: (
+                <FaPlay className="Icon"/>
+            )
         },
         {
             label: 'Jobs',
-            route: '/jobs'
+            route: '/jobs',
+            icon: (
+                <FaClipboardList className="Icon"/>
+            )
         }];
 
     useEffect(() => {
