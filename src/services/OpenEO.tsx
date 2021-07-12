@@ -62,7 +62,14 @@ export const getServices = (): Promise<OpenEOProcess[]> => {
             }
         }))
         .then((response: Response) => response.json())
-        .then((data: any) => data.processes);
+        .then((data: any) => data.processes)
+        .then((processes: OpenEOProcess[]) => processes.map((p: OpenEOProcess) => ({
+            ...p,
+            parameters: p.parameters.map((param: OpenEOProcessParam) => ({
+                ...param,
+                value: param.default
+            }))
+        })));
 };
 
 export const createPreviewService =  async (service: OpenEOProcess): Promise<any> => {

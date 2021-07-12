@@ -4,7 +4,7 @@ import "react-datetime/css/react-datetime.css";
 
 const DateTimeParam = (props: any) => {
     return (
-        <Datetime onChange={(event: any) => props.setValue(event.format('YYYY-MM-DD'))}/>
+        <Datetime value={props.value} onChange={(event: any) => props.setValue(event.format('YYYY-MM-DD'))}/>
     )
 }
 

@@ -111,7 +111,7 @@ const renderParam = (p: OpenEOProcessParam, dispatch: Function) => (
         <div className={styles.ParamInput}>
             {
                 p.schema.type === 'temporal-intervals' ? (
-                    <IntervalParam setValue={(interval: any) => updateParam(p, interval, dispatch)}></IntervalParam>
+                    <IntervalParam value={p.value} setValue={(interval: any) => updateParam(p, interval, dispatch)}></IntervalParam>
                 ) : ''
             }
             {
@@ -121,7 +121,7 @@ const renderParam = (p: OpenEOProcessParam, dispatch: Function) => (
             }
             {
                 p.schema.type === 'string' ? (
-                    <StringParam setValue={(text: any) => updateParam(p, text, dispatch)}></StringParam>
+                    <StringParam value={p.value} setValue={(text: any) => updateParam(p, text, dispatch)}></StringParam>
                 ) : ''
             }
         </div>

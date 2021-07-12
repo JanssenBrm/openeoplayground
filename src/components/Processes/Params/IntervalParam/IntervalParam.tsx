@@ -15,10 +15,10 @@ const IntervalParam = (props: any) => {
     return (
         <div className={styles.IntervalContainer}>
             <div className={styles.DateSelector}>
-                <DateTimeParam setValue={(event: any) => setInterval([event, interval[1]])}></DateTimeParam>
+                <DateTimeParam value={props.value? props.value[0] : undefined} setValue={(event: any) => setInterval([event, interval[1]])}></DateTimeParam>
             </div>
             <div className={styles.DateSelector}>
-                <DateTimeParam setValue={(event: any) => setInterval([interval[0], event])}></DateTimeParam>
+                <DateTimeParam value={props.value? props.value[1] : undefined}  setValue={(event: any) => setInterval([interval[0], event])}></DateTimeParam>
             </div>
 
         </div>
