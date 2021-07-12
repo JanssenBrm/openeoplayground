@@ -31,6 +31,13 @@ const _dowloadResult = (id: string) => {
         })
 }
 
+const toggleExpanded = (id: string, expanded: string | undefined, setExpanded: Function) => {
+    if (expanded === id) {
+        setExpanded(undefined);
+    } else {
+        setExpanded(id);
+    }
+}
 const Jobs = () => {
     const [jobs, setJobs] = useState([])
     const [loading, setLoading] = useState(false);
@@ -65,7 +72,7 @@ const Jobs = () => {
             <div className={styles.JobList}>
                 {
                     jobs.map((j: any) => (
-                        <div className={styles.Job} onClick={() =>  setExpanded(j.id)}>
+                        <div className={styles.Job} onClick={() => toggleExpanded(j.id, expanded, setExpanded)}>
                             <div className={styles.JobRow}>
                                 <div className={styles.JobDate}>
                                     {j.created}
