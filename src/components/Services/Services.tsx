@@ -26,8 +26,6 @@ const Services = () => {
     const [services, setServices] = useState([])
     const [loading, setLoading] = useState(false);
     const [expanded, setExpanded] = useState<string | undefined>(undefined);
-    const [logs, setLogs] = useState<string[]>([]);
-
 
     useEffect(() => {
         _getServices(setServices, setLoading);
