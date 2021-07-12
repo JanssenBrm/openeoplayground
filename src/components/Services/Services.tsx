@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Services.module.css';
-import {executeService, getServices} from "../../services/OpenEO";
+import {createPreviewService, executeService, getServices} from "../../services/OpenEO";
 import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess";
 import {Button, Form, Spinner} from 'react-bootstrap';
 import IntervalParam from './Params/IntervalParam/IntervalParam';
@@ -22,7 +22,7 @@ const updateSelected = (event: any, services: OpenEOProcess[], dispatch: Functio
     }
 }
 
-const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Function, dispatch: Function) => (
+const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Function,  previewLoading: boolean, setPreviewLoading: Function, dispatch: Function) => (
     <div className={styles.ServiceInfo}>
         <div className={styles.ServiceTitle}>{s.id}</div>
         <div className={styles.Description}>{s.description}</div>
@@ -31,13 +31,22 @@ const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Funct
         }
 
         <div className={styles.Execute}>
-            <Button className={styles.ExecuteButton} disabled={!paramsValid(s.parameters) || loading}
+            <Button className={styles.ExecuteButton} disabled={!paramsValid(s.parameters) || previewLoading || loading}
                     onClick={() => _executeService(s, setLoading, dispatch)}>
                 {
                     loading ? (
                             <Spinner animation="border"/>
                         ) :
                         'Execute'
+                }
+            </Button>
+            <Button className={styles.ExecuteButton} disabled={!paramsValid(s.parameters) || previewLoading || loading}
+                    onClick={() => _generatePreview(s, setPreviewLoading, dispatch)}>
+                {
+                    previewLoading ? (
+                            <Spinner animation="border"/>
+                        ) :
+                        'Preview'
                 }
             </Button>
 
@@ -57,6 +66,27 @@ const _executeService = (p: OpenEOProcess, setLoading: Function, dispatch: Funct
         dispatch(addToast({
             id: 'service_execute_error',
             text: 'Something went wrong when executing service',
+            type: 'danger',
+        }))
+    }).finally(() => {
+        setLoading(false);
+    })
+}
+
+const _generatePreview = (p: OpenEOProcess, setLoading: Function, dispatch: Function): void => {
+    setLoading(true);
+    createPreviewService(p)
+        .then((result: any) => {
+            console.log("RESULT", result);
+            dispatch(addToast({
+                id: 'preview_success',
+                text: `Succesfully created preview service`,
+                type: 'success'
+            }));
+        }).catch((error: string) => {
+        dispatch(addToast({
+            id: 'preview_error',
+            text: 'Something went wrong when creating viewing service',
             type: 'danger',
         }))
     }).finally(() => {
@@ -97,6 +127,7 @@ const paramsValid = (params: OpenEOProcessParam[]): boolean => params.filter((p:
 const Services = (props: any) => {
     const [services, setServices]: [OpenEOProcess[], any] = useState([]);
     const [execLoading, setExecLoading] = useState(false);
+    const [previewLoading, setPreviewLoading] = useState(false);
     const dispatch = useDispatch();
     const selected: OpenEOProcess | undefined = useSelector((state: AppStore) => state.params.process);
 
@@ -117,7 +148,7 @@ const Services = (props: any) => {
                     }
                 </Form.Control>
             </div>
-            {selected ? renderServiceInfo(selected, execLoading, setExecLoading, dispatch) : ''}
+            {selected ? renderServiceInfo(selected, execLoading, setExecLoading, previewLoading, setPreviewLoading, dispatch) : ''}
         </div>
     )
 }

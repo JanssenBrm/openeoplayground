@@ -50,3 +50,7 @@
 .ExecuteButton {
     flex: 1;
 }
+
+.ExecuteButton:not(:last-child) {
+    margin-right: .5rem;
+}

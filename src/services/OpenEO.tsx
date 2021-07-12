@@ -32,11 +32,26 @@ const buildGraph = (service: OpenEOProcess): any => ({
                         result[p.name] =  p.value;
                         return result;
                     }, {})
+                }
+            },
+            save: {
+                process_id: 'save_result',
+                arguments: {
+                    data: {
+                        from_node: 'serviceexecute1'
+                    },
+                    format: "GTiff"
                 },
                 result: true
             }
         }
     }
+})
+
+const buildServiceGraph = (service: OpenEOProcess): any => ({
+  ...buildGraph(service),
+    type: 'wmts',
+    enabled: true
 })
 
 export const getServices = (): Promise<OpenEOProcess[]> => {
@@ -50,6 +65,33 @@ export const getServices = (): Promise<OpenEOProcess[]> => {
         .then((data: any) => data.processes);
 };
 
+export const createPreviewService =  async (service: OpenEOProcess): Promise<any> => {
+    const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
+    const location = await fetch(`${OPENEO_BASE}services`, {
+        headers: {
+            ...createAuthHeader(token),
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(buildServiceGraph(service))
+    }).then((response: Response) => response.headers.get('Location') || '');
+
+    if (location !== '') {
+        return await fetch(`${location}/results`, {
+            headers: {
+                ...createAuthHeader(token),
+            },
+            method: 'POST'
+        }).then((response: Response) => {
+            if (response.status == 400) {
+                throw new Error(`Could not get results`);
+            }
+            return response.json();
+        });
+    } else {
+        throw new Error(`Could not create viewing service`);
+    }
+}
 
 export const executeService = async (service: OpenEOProcess): Promise<string> => {
     const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
