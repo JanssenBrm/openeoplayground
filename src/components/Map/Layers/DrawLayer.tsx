@@ -54,7 +54,7 @@ const DrawLayer = (props: DrawLayerProps) => {
                 draw={{
                     polyline: false,
                     polygon: true,
-                    rectangle: false,
+                    rectangle: true,
                     circle: false,
                     marker: false,
                     circlemarker: false
