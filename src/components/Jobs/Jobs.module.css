@@ -35,7 +35,7 @@
 
 .Job:hover {
     cursor: pointer;
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--primary-color);
 }
 
 .JobDate, .JobDuration, .JobDescription {

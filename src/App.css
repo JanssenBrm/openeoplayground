@@ -16,7 +16,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  width: 30vw;
+  width: 20vw;
   display: flex;
   z-index: 9999;
   overflow: auto;
