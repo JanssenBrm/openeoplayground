@@ -10,7 +10,8 @@ import {AppStore} from './stores/app.model';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import Jobs from './components/Jobs/Jobs';
 import Processes from './components/Processes/Processes';
-import {FaClipboardList, FaPlay } from 'react-icons/fa';
+import {FaClipboardList, FaEye, FaPlay } from 'react-icons/fa';
+import Services from './components/Services/Services';
 
 
 function App() {
@@ -28,6 +29,13 @@ function App() {
             route: '/jobs',
             icon: (
                 <FaClipboardList className="Icon"/>
+            )
+        },
+        {
+            label: 'Services',
+            route: '/services',
+            icon: (
+                <FaEye className="Icon"/>
             )
         }];
 
@@ -63,6 +71,9 @@ function App() {
                         </Route>
                         <Route path="/jobs">
                            <Jobs/>
+                        </Route>
+                        <Route path="/services">
+                            <Services/>
                         </Route>
                     </Switch>
                 </div>

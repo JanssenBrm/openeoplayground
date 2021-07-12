@@ -1,0 +1,82 @@
+.ServicesContainer {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: var(--content-color);
+    overflow: auto;
+}
+
+.ServiceList {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.Service {
+    display: flex;
+    background-color: var(--component-color);
+    padding: .75rem;
+    margin: .25rem 0;
+    border-radius: 5px;
+    font-size: smaller;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid var(--component-color);
+}
+
+.ServiceLogs {
+    max-height: 10rem;
+    overflow: auto;
+    background-color: var(--content-color);
+    padding: 1rem;
+    margin: .5rem 0;
+    width: 100%;
+}
+
+.Service:hover {
+    cursor: pointer;
+    border: 1px solid var(--primary-color);
+}
+
+.ServiceDate, .ServiceDuration, .ServiceDescription {
+    font-size: x-small;
+    color: var(--inactive-color);
+}
+
+.ServiceDate, .ServiceDuration, .ServiceInfo, .ServiceActions{
+    margin-right: 1rem;
+}
+
+.ServiceRow {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.ServiceInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.ServicesHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.ServiceDescription {
+    flex: 1;
+}
+
+.ServiceTitle {
+    font-weight: bold;
+}
+
+.ACTIVE {
+    color: #3bc349;
+}
+
+.INACTIVE {
+    color: #f62e51;
+}
