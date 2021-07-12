@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/openeoplayground/static/css/main.07cc718b.chunk.css",
-    "main.js": "/openeoplayground/static/js/main.eddc88cc.chunk.js",
-    "main.js.map": "/openeoplayground/static/js/main.eddc88cc.chunk.js.map",
+    "main.js": "/openeoplayground/static/js/main.fae845f7.chunk.js",
+    "main.js.map": "/openeoplayground/static/js/main.fae845f7.chunk.js.map",
     "runtime-main.js": "/openeoplayground/static/js/runtime-main.0330fe6b.js",
     "runtime-main.js.map": "/openeoplayground/static/js/runtime-main.0330fe6b.js.map",
     "static/css/2.e47dae7e.chunk.css": "/openeoplayground/static/css/2.e47dae7e.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.e47dae7e.chunk.css",
     "static/js/2.a4da9e44.chunk.js",
     "static/css/main.07cc718b.chunk.css",
-    "static/js/main.eddc88cc.chunk.js"
+    "static/js/main.fae845f7.chunk.js"
   ]
 }
