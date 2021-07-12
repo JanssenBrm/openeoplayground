@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import './App.css';
 import Map from "./components/Map/Map";
@@ -23,6 +23,11 @@ function App() {
             label: 'Jobs',
             route: '/jobs'
         }];
+
+    useEffect(() => {
+       document.title = 'OpenEO Playground'
+    }, []);
+
     return (
         <Router>
             <div className="MainContainer">
