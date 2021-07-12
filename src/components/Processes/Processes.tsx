@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Processes.module.css';
-import {createPreviewService, executeService, getServices} from "../../services/OpenEO";
+import {createPreviewService, getProcesses, executeProcess} from "../../services/OpenEO";
 import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess";
 import {Button, Form, Spinner} from 'react-bootstrap';
 import IntervalParam from './Params/IntervalParam/IntervalParam';
@@ -57,7 +57,7 @@ const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Funct
 )
 const _executeService = (p: OpenEOProcess, setLoading: Function, dispatch: Function): void => {
     setLoading(true);
-    executeService(p)
+    executeProcess(p)
         .then((result: string) => {
             dispatch(addToast({
                 id: 'service_execute',
@@ -144,7 +144,7 @@ const Processes = (props: any) => {
     const selected: OpenEOProcess | undefined = useSelector((state: AppStore) => state.params.process);
 
     useEffect(() => {
-        getServices()
+        getProcesses()
             .then((services: OpenEOProcess[]) => {
                 setServices(services);
             });

@@ -54,7 +54,7 @@ const buildServiceGraph = (service: OpenEOProcess): any => ({
     enabled: true
 })
 
-export const getServices = (): Promise<OpenEOProcess[]> => {
+export const getProcesses = (): Promise<OpenEOProcess[]> => {
     return getToken(OPENEO_USERNAME, OPENEO_PASSWORD)
         .then((token: string) => fetch(`${OPENEO_BASE}processes/vito`, {
             headers: {
@@ -100,7 +100,7 @@ export const createPreviewService =  async (service: OpenEOProcess): Promise<any
     }
 }
 
-export const executeService = async (service: OpenEOProcess): Promise<string> => {
+export const executeProcess = async (service: OpenEOProcess): Promise<string> => {
     const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
     const location = await fetch(`${OPENEO_BASE}jobs`, {
             headers: {
