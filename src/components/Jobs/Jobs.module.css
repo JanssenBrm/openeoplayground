@@ -20,6 +20,22 @@
     border-radius: 5px;
     font-size: smaller;
     align-items: center;
+    flex-direction: column;
+    border: 1px solid var(--component-color);
+}
+
+.JobLogs {
+    max-height: 10rem;
+    overflow: auto;
+    background-color: var(--content-color);
+    padding: 1rem;
+    margin: .5rem 0;
+    width: 100%;
+}
+
+.Job:hover {
+    cursor: pointer;
+    border: 1px solid var(--secondary-color);
 }
 
 .JobDate, .JobDuration, .JobDescription {
@@ -29,6 +45,12 @@
 
 .JobDate, .JobDuration, .JobInfo, .JobActions{
     margin-right: 1rem;
+}
+
+.JobRow {
+    display: flex;
+    width: 100%;
+    align-items: center;
 }
 
 .JobInfo {

@@ -149,6 +149,21 @@ export const getJobs = async () : Promise<any> => {
     return jobs;
 }
 
+export const getLogs = async (id: string) : Promise<string[]> => {
+    const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
+
+    const logs = await fetch(`${OPENEO_BASE}jobs/${id}/logs`, {
+        headers: {
+            ...createAuthHeader(token),
+        },
+    })
+        .then((response: Response) => response.json())
+        .then((data: any) => data.logs)
+        .then((logs: any) => logs.filter((l: any) => l.message).map((l: any) => `${l.time} - ${l.level.toUpperCase()} - ${l.message}`))
+
+    return logs;
+}
+
 export const downloadJobResult = async (id: string) : Promise<any> => {
     const token = await getToken(OPENEO_USERNAME, OPENEO_PASSWORD);
 
