@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/openeoplayground/static/css/main.07cc718b.chunk.css",
-    "main.js": "/openeoplayground/static/js/main.614ee103.chunk.js",
-    "main.js.map": "/openeoplayground/static/js/main.614ee103.chunk.js.map",
-    "runtime-main.js": "/openeoplayground/static/js/runtime-main.0330fe6b.js",
-    "runtime-main.js.map": "/openeoplayground/static/js/runtime-main.0330fe6b.js.map",
-    "static/css/2.e47dae7e.chunk.css": "/openeoplayground/static/css/2.e47dae7e.chunk.css",
-    "static/js/2.a4da9e44.chunk.js": "/openeoplayground/static/js/2.a4da9e44.chunk.js",
-    "static/js/2.a4da9e44.chunk.js.map": "/openeoplayground/static/js/2.a4da9e44.chunk.js.map",
-    "static/js/3.ac65a78e.chunk.js": "/openeoplayground/static/js/3.ac65a78e.chunk.js",
-    "static/js/3.ac65a78e.chunk.js.map": "/openeoplayground/static/js/3.ac65a78e.chunk.js.map",
-    "index.html": "/openeoplayground/index.html",
-    "static/css/2.e47dae7e.chunk.css.map": "/openeoplayground/static/css/2.e47dae7e.chunk.css.map",
-    "static/css/main.07cc718b.chunk.css.map": "/openeoplayground/static/css/main.07cc718b.chunk.css.map",
-    "static/js/2.a4da9e44.chunk.js.LICENSE.txt": "/openeoplayground/static/js/2.a4da9e44.chunk.js.LICENSE.txt",
-    "static/media/leaflet.draw.css": "/openeoplayground/static/media/spritesheet.a4e0eb7a.svg"
+    "main.css": "/static/css/main.07cc718b.chunk.css",
+    "main.js": "/static/js/main.fae845f7.chunk.js",
+    "main.js.map": "/static/js/main.fae845f7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.77d5c1cb.js",
+    "runtime-main.js.map": "/static/js/runtime-main.77d5c1cb.js.map",
+    "static/css/2.bf0f195d.chunk.css": "/static/css/2.bf0f195d.chunk.css",
+    "static/js/2.a4da9e44.chunk.js": "/static/js/2.a4da9e44.chunk.js",
+    "static/js/2.a4da9e44.chunk.js.map": "/static/js/2.a4da9e44.chunk.js.map",
+    "static/js/3.ac65a78e.chunk.js": "/static/js/3.ac65a78e.chunk.js",
+    "static/js/3.ac65a78e.chunk.js.map": "/static/js/3.ac65a78e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.bf0f195d.chunk.css.map": "/static/css/2.bf0f195d.chunk.css.map",
+    "static/css/main.07cc718b.chunk.css.map": "/static/css/main.07cc718b.chunk.css.map",
+    "static/js/2.a4da9e44.chunk.js.LICENSE.txt": "/static/js/2.a4da9e44.chunk.js.LICENSE.txt",
+    "static/media/leaflet.draw.css": "/static/media/spritesheet.a4e0eb7a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0330fe6b.js",
-    "static/css/2.e47dae7e.chunk.css",
+    "static/js/runtime-main.77d5c1cb.js",
+    "static/css/2.bf0f195d.chunk.css",
     "static/js/2.a4da9e44.chunk.js",
     "static/css/main.07cc718b.chunk.css",
-    "static/js/main.614ee103.chunk.js"
+    "static/js/main.fae845f7.chunk.js"
   ]
 }
