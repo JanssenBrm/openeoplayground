@@ -3,11 +3,13 @@
     height: 100%;
     padding: 1rem;
     background-color: var(--content-color);
+    overflow: auto;
 }
 
 .JobList {
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .Job {

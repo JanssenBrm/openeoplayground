@@ -20,25 +20,20 @@ const createAuthHeader = (token: string): any => ({
 })
 
 const buildGraph = (service: OpenEOProcess): any => ({
-    'title': `OpenEO Job Execution - ${service.id}`,
-    'description': `${service.description}`,
-    'process': {
-        'process_graph': {
-            "serviceexecute1": {
-                "process_id": service.id,
-                "arguments": service.parameters.reduce((result: any, p: OpenEOProcessParam) => {
-                    if (p.schema.type === 'temporal-intervals') {
-                        result[p.name] = { extent: p.value };
-                    } else {
+    title: `OpenEO Job Execution - ${service.id}`,
+    description: `${service.description}`,
+    process: {
+        process_graph: {
+            serviceexecute1: {
+                process_id: `${service.id}`,
+                namespace: 'vito',
+                arguments: {
+                    ...service.parameters.reduce((result: any, p: OpenEOProcessParam) => {
                         result[p.name] =  p.value;
-                    }
-                    return result;
-                }, {})
-            },
-            'saveresult1': {
-                'process_id': 'save_result',
-                'arguments': {'data': {'from_node': 'serviceexecute1'}, 'format': 'gtiff', 'options': {}},
-                'result': true
+                        return result;
+                    }, {})
+                },
+                result: true
             }
         }
     }
@@ -68,12 +63,17 @@ export const executeService = async (service: OpenEOProcess): Promise<string> =>
         }).then((response: Response) => response.headers.get('Location') || '');
 
     if (location !== '') {
-        await fetch(`${location}/results`, {
+       return await fetch(`${location}/results`, {
             headers: {
                 ...createAuthHeader(token),
             },
             method: 'POST'
-        });
+        }).then((response: Response) => {
+           if (response.status == 400) {
+               throw new Error(`Could not get results`);
+           }
+           return location
+       });
     }
     return location;
 }
