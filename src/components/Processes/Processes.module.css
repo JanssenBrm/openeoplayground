@@ -8,12 +8,13 @@
 }
 
 .ServiceSelect {
-    border-bottom: 1px solid #eeeff0;
-    padding-bottom: 1rem;
+    padding: .5rem 0;
 }
 
 .ServiceInfo {
-    margin-top: 1rem;
+    padding-top: 1rem;
+    margin-top: .5rem;
+    border-top: 1px solid #eeeff0;
 }
 
 .ServiceTitle {

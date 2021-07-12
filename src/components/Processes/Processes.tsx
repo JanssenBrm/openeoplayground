@@ -153,8 +153,8 @@ const Processes = (props: any) => {
     return (
         <div className={styles.ServiceContainer}>
             <div className={styles.ServiceSelect}>
-                <Form.Label>Select your service</Form.Label>
                 <Form.Control as="select" onChange={(event: any) => updateSelected(event, services, dispatch)}>
+                    <option selected disabled key='none'>Select a service</option>
                     {
                         services.map((s: OpenEOProcess) => renderServiceSelect(s))
                     }
