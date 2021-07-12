@@ -5,7 +5,7 @@ import { ParamProps } from "../ParamProps.";
 
 const StringParam = (props: ParamProps) => {
     return (
-    <Form.Control value={props.value} onChange={(event: any) => props.setValue(event.target.value)}>
+    <Form.Control value={props.value || ''} onChange={(event: any) => props.setValue(event.target.value)}>
     </Form.Control>
     )
 }

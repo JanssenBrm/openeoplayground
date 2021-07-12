@@ -4,6 +4,7 @@
     background-color: white;
     padding: 1rem;
     font-size: smaller;
+    overflow: auto;
 }
 
 .ServiceSelect {

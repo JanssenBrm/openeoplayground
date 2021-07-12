@@ -19,6 +19,8 @@
   width: 30vw;
   display: flex;
   z-index: 9999;
+  overflow: auto;
+  max-height: 97vh;
 }
 
 .Toasts {
