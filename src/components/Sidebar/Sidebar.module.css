@@ -31,16 +31,19 @@
     color: var(--primary-contrast-color);
     display: flex;
     align-items: center;
+    margin-left: 5px;
 }
 .Route:hover {
     color: var(--primary-contrast-color);
     background-color: var(--primary-hover);
     border-left: 5px solid  var(--secondary-color);
     text-decoration: none;
+    margin-left: 0px;
 }
 
 .ActiveRoute {
     border-left: 5px solid var(--secondary-color);
+    margin-left: 0px;
 }
 
 .RouteLabel {
