@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://cloudcdn.apisuite.io/proxima-nova.css');
+
+
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
@@ -7,16 +9,30 @@ body {
 }
 
 body, select, input, option {
-  font-family: 'Rubik';
+  font-family: 'Proxima Nova';
 }
 
 
 :root {
-  --sidebar-color: #363e4a;
-  --sidebar-text-color: #eeeef0;
-  --sidebar-header-color: #41495a;
-  --content-color: #f2f7f8;
-  --component-color: white;
 
-  --inactive-color: #858e96;
+  --content-color: #f5f8fb;
+  --component-color: #ffffff;
+
+
+  --primary-color: rgb(0, 38, 56);
+  --primary-contrast-color: #ffffff;
+
+  --secondary-color: #FF2D28;
+  --secondary-disabled-color: #FF5551;
+
+}
+
+.btn-primary {
+  background-color: var( --secondary-color);
+  border-color: var( --secondary-color);
+}
+
+.btn-primary:hover, .btn-primary:disabled {
+  background-color: var(--secondary-disabled-color);
+  border-color: var(--secondary-disabled-color);
 }

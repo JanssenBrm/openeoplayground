@@ -51,11 +51,13 @@ const Jobs = () => {
                             <div className={styles.JobDate}>
                                 {j.created}
                             </div>
-                            <div className={styles.JobTitle}>
-                                {j.title || 'Job'}
-                            </div>
-                            <div className={styles.JobDescription}>
-                                {j.description || ''}
+                            <div className={styles.JobInfo}>
+                                <div className={styles.JobTitle}>
+                                    {j.title || 'Job'}
+                                </div>
+                                <div className={styles.JobDescription}>
+                                    {j.description || ''}
+                                </div>     
                             </div>
                             <div className={styles.JobActions}>
                                 {

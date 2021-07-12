@@ -16,8 +16,8 @@ function App() {
     const toasts: Toast[] = useSelector((state: AppStore) => state.ui.toasts)
     const routes: SidebarRoute[] = [
         {
-            label: 'Services',
-            route: '/services'
+            label: 'Processes',
+            route: '/processes'
         },
         {
             label: 'Jobs',
@@ -36,11 +36,11 @@ function App() {
                             path="/"
                             render={() => {
                                 return (
-                                    <Redirect to="/services" />
+                                    <Redirect to="/processes" />
                                 )
                             }}
                         />
-                        <Route path="/services">
+                        <Route path="/processes">
                             <div className="Services">
                                 <Services/>
                             </div>
