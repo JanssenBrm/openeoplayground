@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addToast} from '../../stores/ui';
 import { AppStore } from '../../stores/app.model';
 import { setProcess, updateProcessParam } from '../../stores/params';
+import StringParam from './Params/String/StringParam';
 
 
 const renderServiceSelect = (s: OpenEOProcess) => (
@@ -116,6 +117,11 @@ const renderParam = (p: OpenEOProcessParam, dispatch: Function) => (
             {
                 p.schema.type === 'object' ? (
                     <GeometryParam type="polygon" setValue={(feature: any) => updateParam(p, feature, dispatch)}></GeometryParam>
+                ) : ''
+            }
+            {
+                p.schema.type === 'string' ? (
+                    <StringParam setValue={(text: any) => updateParam(p, text, dispatch)}></StringParam>
                 ) : ''
             }
         </div>
