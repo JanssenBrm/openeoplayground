@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import styles from './Services.module.css';
+import styles from './Processes.module.css';
 import {createPreviewService, executeService, getServices} from "../../services/OpenEO";
 import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess";
 import {Button, Form, Spinner} from 'react-bootstrap';
@@ -124,7 +124,7 @@ const renderParam = (p: OpenEOProcessParam, dispatch: Function) => (
 
 const paramsValid = (params: OpenEOProcessParam[]): boolean => params.filter((p: OpenEOProcessParam) => !p.value).length === 0;
 
-const Services = (props: any) => {
+const Processes = (props: any) => {
     const [services, setServices]: [OpenEOProcess[], any] = useState([]);
     const [execLoading, setExecLoading] = useState(false);
     const [previewLoading, setPreviewLoading] = useState(false);
@@ -153,4 +153,4 @@ const Services = (props: any) => {
     )
 }
 
-export default Services;
+export default Processes;

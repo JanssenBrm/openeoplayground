@@ -83,7 +83,7 @@ export const createPreviewService =  async (service: OpenEOProcess): Promise<any
             },
             method: 'POST'
         }).then((response: Response) => {
-            if (response.status == 400) {
+            if (response.status === 400) {
                 throw new Error(`Could not get results`);
             }
             return response.json();
@@ -111,7 +111,7 @@ export const executeService = async (service: OpenEOProcess): Promise<string> =>
             },
             method: 'POST'
         }).then((response: Response) => {
-           if (response.status == 400) {
+           if (response.status === 400) {
                throw new Error(`Could not get results`);
            }
            return location

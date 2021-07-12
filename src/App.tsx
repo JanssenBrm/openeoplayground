@@ -2,7 +2,6 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import './App.css';
 import Map from "./components/Map/Map";
-import Services from "./components/Services/Services";
 import Sidebar from './components/Sidebar/Sidebar';
 import {SidebarRoute} from './components/Sidebar/Sidebar.model';
 import {Toast} from './components/Toasts/toast.model';
@@ -10,6 +9,7 @@ import Toasts from './components/Toasts/Toasts';
 import {AppStore} from './stores/app.model';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import Jobs from './components/Jobs/Jobs';
+import Processes from './components/Processes/Processes';
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
                         />
                         <Route path="/processes">
                             <div className="Services">
-                                <Services/>
+                                <Processes/>
                             </div>
                             <Map/>
                             <div className="Toasts">

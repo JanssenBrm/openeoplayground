@@ -10,7 +10,7 @@ const IntervalParam = (props: any) => {
        if (interval[0] && interval[1]) {
            props.setValue(interval);
        }
-    }, [interval]);
+    }, [interval, props]);
 
     return (
         <div className={styles.IntervalContainer}>

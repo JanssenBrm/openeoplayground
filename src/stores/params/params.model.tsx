@@ -1,4 +1,4 @@
-import {OpenEOProcess, OpenEOProcessParam } from "../../interfaces/OpenEOProcess";
+import {OpenEOProcess } from "../../interfaces/OpenEOProcess";
 
 export interface ParamsState {
     feature: any,

@@ -1,5 +1,4 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { SidebarProps, SidebarRoute } from "./Sidebar.model";
 import styles from './Sidebar.module.css';
