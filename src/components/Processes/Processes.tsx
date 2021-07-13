@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Processes.module.css';
-import {createPreviewService, getProcesses, executeProcess} from "../../services/OpenEO";
+import {createPreviewService, getProcesses, executeProcess, buildProcessGraph} from "../../services/OpenEO";
 import {OpenEOProcess, OpenEOProcessParam} from "../../interfaces/OpenEOProcess";
 import {Button, Form, Spinner} from 'react-bootstrap';
 import IntervalParam from './Params/IntervalParam/IntervalParam';
@@ -11,6 +11,8 @@ import { AppStore } from '../../stores/app.model';
 import { setProcess, updateProcessParam } from '../../stores/params';
 import StringParam from './Params/StringParam/StringParam';
 import NumberParam from './Params/NumberParam/NumberParam';
+import ReactJson from 'react-json-view';
+import { FaClipboard } from 'react-icons/fa';
 
 
 const renderServiceSelect = (s: OpenEOProcess) => (
@@ -24,7 +26,24 @@ const updateSelected = (event: any, services: OpenEOProcess[], dispatch: Functio
     }
 }
 
-const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Function,  previewLoading: boolean, setPreviewLoading: Function, dispatch: Function) => (
+const copyToClipboard = (s: OpenEOProcess, dispatch: Function): void => {
+    navigator.clipboard.writeText(JSON.stringify(buildProcessGraph(s)));
+    dispatch(addToast({
+        id: 'copy_ok',
+        text: `Succesfully copied process graph to clipboard`,
+        type: 'success',
+        duration: 2000
+    }));
+
+}
+const renderServiceInfo = (s: OpenEOProcess,
+                           loading: boolean,
+                           setLoading: Function,
+                           previewLoading: boolean,
+                           setPreviewLoading: Function,
+                           showGraph: boolean,
+                           setShowGraph: Function,
+                           dispatch: Function) => (
     <div className={styles.ServiceInfo}>
         <div className={styles.ServiceTitle}>{s.id}</div>
         <div className={styles.Description}>{s.description}</div>
@@ -51,7 +70,22 @@ const renderServiceInfo = (s: OpenEOProcess, loading: boolean, setLoading: Funct
                         'Preview'
                 }
             </Button>
+        </div>
+        <div className={styles.ProcessGraph}>
+            <span className={styles.ProcessGraphToggle} onClick={() => setShowGraph(!showGraph)}>{
+                showGraph ? 'Hide' : 'Show'
+            } graph</span>
+        {
+            showGraph ? (
+                <div>
+                    <ReactJson src={buildProcessGraph(s)}></ReactJson>
+                    <div className={styles.ClipboardCopy} onClick={() => copyToClipboard(s, dispatch)}>
+                        Copy to clipboard
+                    </div>
+                </div>
 
+            ) : ''
+        }
         </div>
     </div>
 )
@@ -140,6 +174,7 @@ const Processes = (props: any) => {
     const [services, setServices]: [OpenEOProcess[], any] = useState([]);
     const [execLoading, setExecLoading] = useState(false);
     const [previewLoading, setPreviewLoading] = useState(false);
+    const [showGraph, setShowGraph] = useState(false);
     const dispatch = useDispatch();
     const selected: OpenEOProcess | undefined = useSelector((state: AppStore) => state.params.process);
 
@@ -160,7 +195,7 @@ const Processes = (props: any) => {
                     }
                 </Form.Control>
             </div>
-            {selected ? renderServiceInfo(selected, execLoading, setExecLoading, previewLoading, setPreviewLoading, dispatch) : ''}
+            {selected ? renderServiceInfo(selected, execLoading, setExecLoading, previewLoading, setPreviewLoading, showGraph, setShowGraph, dispatch) : ''}
         </div>
     )
 }

@@ -56,3 +56,25 @@
 .ExecuteButton:not(:last-child) {
     margin-right: .5rem;
 }
+
+.ProcessGraph {
+    margin: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.ProcessGraphToggle, .ClipboardCopy {
+    color: var(--secondary-disabled-color);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ProcessGraphToggle:hover, .ClipboardCopy:hover {
+    cursor: pointer;
+}
+
+.ClipboardCopy {
+    margin-top: .5rem;
+    align-items: baseline;
+}
+

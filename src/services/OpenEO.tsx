@@ -19,7 +19,7 @@ const createAuthHeader = (token: string): any => ({
     Authorization: `Bearer ${token}`
 })
 
-const buildProcessGraph = (service: OpenEOProcess): any => ({
+export const buildProcessGraph = (service: OpenEOProcess): any => ({
         serviceexecute1: {
             process_id: `${service.id}`,
             namespace: 'vito',
