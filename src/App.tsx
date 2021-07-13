@@ -7,7 +7,7 @@ import {SidebarRoute} from './components/Sidebar/Sidebar.model';
 import {Toast} from './components/Toasts/toast.model';
 import Toasts from './components/Toasts/Toasts';
 import {AppStore} from './stores/app.model';
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
+import {HashRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import Jobs from './components/Jobs/Jobs';
 import Processes from './components/Processes/Processes';
 import {FaClipboardList, FaEye, FaPlay } from 'react-icons/fa';
